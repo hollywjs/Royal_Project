@@ -17,6 +17,7 @@ void insertAfter(ListNode* location, Rectangle1* newRect){
 
 void reverse(ListNode* location){
 	ListNode* temp = location->next_;
+	int tempRed,tempBlue,tempGreen;
 	if(location != location->next_){
 		location->next_ = temp->next_;
 		reverse(location);
@@ -24,4 +25,3 @@ void reverse(ListNode* location){
 		temp->next_=location;
 	}
 }
-

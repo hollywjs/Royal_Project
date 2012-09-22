@@ -71,6 +71,7 @@ void Royal_ProjectApp::mouseDown( MouseEvent event )
 {
 	recX = event.getX();
 	recY = event.getY();
+	reverse(first_node);
 	eventTimes=0;
 	currentNode=first_node->next_;
 	while(currentNode != first_node){
@@ -79,7 +80,6 @@ void Royal_ProjectApp::mouseDown( MouseEvent event )
 		eventTimes++;
 		currentNode=currentNode->next_;
 	}
-	//reverse(first_node);
 	//circleX=event.getX();
 	//circleY=event.getY();
 }
@@ -97,8 +97,6 @@ void Royal_ProjectApp::mouseDown( MouseEvent event )
 void Royal_ProjectApp::update(){
 	rec = new Rectangle1(pixels,kTextureSize,0,0,kAppWidth,kAppHeight,255,255,255);
 	rec->draw();
-	//smallRec = new Rectangle1(pixels,kTextureSize,100,350,650,100,0,150,150);
-	//insertAfter(first_node, smallRec);
 	currentNode=first_node->next_;
 	while(currentNode != first_node){
 		currentNode->data_->draw();

@@ -39,3 +39,51 @@ void Rectangle1::setX(int newX){
 void Rectangle1::setY(int newY){
 	y= newY;
 }
+
+void Rectangle1::setRed(int newRed){
+	red= newRed;
+}
+
+void Rectangle1::setBlue(int newBlue){
+	blue= newBlue;
+}
+
+void Rectangle1::setGreen(int newGreen){
+	green= newGreen;
+}
+
+uint8_t* Rectangle1::getPixels(){
+		return pixels;
+}
+
+int Rectangle1::getKTextureSize(){
+	return kTextureSize;
+}
+
+int Rectangle1::getX(){
+	return x;
+}
+
+int Rectangle1::getY(){
+	return y;
+}
+
+int Rectangle1::getWidth(){
+	return width;
+}
+
+int Rectangle1::getHeight(){
+	return height;
+}
+	
+int Rectangle1::getRed(){
+	return red;
+}
+
+int Rectangle1::getBlue(){
+	return blue;
+}
+
+int Rectangle1::getGreen(){
+	return green;
+}

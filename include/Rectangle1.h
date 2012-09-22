@@ -9,6 +9,19 @@ public:
 	void Rectangle1::draw();
 	void Rectangle1::setX(int newX);
 	void Rectangle1::setY(int newY);
+	void Rectangle1::setRed(int newRed);
+	void Rectangle1::setBlue(int newBlue);
+	void Rectangle1::setGreen(int newGreen);
+	uint8_t* Rectangle1::getPixels();
+	int Rectangle1::getKTextureSize();
+	int Rectangle1::getX();
+	int Rectangle1::getY();
+	int Rectangle1::getWidth();
+	int Rectangle1::getHeight();
+	int Rectangle1::getRed();
+	int Rectangle1::getBlue();
+	int Rectangle1::getGreen();
+private:
 	uint8_t* pixels;
 	int kTextureSize;
 	int x;
