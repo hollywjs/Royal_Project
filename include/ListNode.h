@@ -13,4 +13,5 @@ public:
 	Rectangle1* data_;
 };
 
-void insertAfter(ListNode* n, Rectangle1* r);
+void insertAfter(ListNode* location, Rectangle1* newRec);
+void reverse(ListNode* location);

@@ -28,7 +28,10 @@ private:
 
 	 int circleX;
 	 int circleY;
-
+	 int recX;
+	 int recY;
+	 int eventTimes;
+		 
 	 Rectangle1 *rec, *rec1,*rec2,*rec3,*rec4;
 	 //Rectangle1 *smallRec;
 
@@ -50,19 +53,43 @@ void Royal_ProjectApp::setup()
 	pixels = (*mySurface_).getData();
 	//circleX=425;
 	//circleY=400;
+	recX = 325;
+	recY = 215;
 	first_node = new ListNode;
 	first_node->next_ = first_node;
+	rec4 = new Rectangle1(pixels,kTextureSize,recX-225,recY-75,150,150,0,0,0);
+	insertAfter(first_node,rec4);
+	rec3 = new Rectangle1(pixels,kTextureSize,recX-150,recY-50,125,125,50,50,50);
+	insertAfter(first_node,rec3);
+	rec2 = new Rectangle1(pixels,kTextureSize,recX-75,recY-25,100,100,100,100,100);
+	insertAfter(first_node,rec2);
+	rec1 = new Rectangle1(pixels,kTextureSize,recX,recY,75,75,150,150,150);
+	insertAfter(first_node,rec1);
 }
 
 void Royal_ProjectApp::mouseDown( MouseEvent event )
 {
+	recX = event.getX();
+	recY = event.getY();
+	eventTimes=0;
+	currentNode=first_node->next_;
+	while(currentNode != first_node){
+		currentNode->data_->setX(recX-(eventTimes*75));
+		currentNode->data_->setY(recY-(eventTimes*25));
+		eventTimes++;
+		currentNode=currentNode->next_;
+	}
+	//reverse(first_node);
 	//circleX=event.getX();
 	//circleY=event.getY();
 }
 
-/**void Royal_SocietyApp::keyDown(KeyEvent event){	
+/**void Royal_ProjectApp::keyDown(KeyEvent event){	
 	if( event.getChar() == '?' ) {
 
+	}
+	else if(event.getChar() == 'r'){
+		reverse(first_node);
 	}
 }
 */
@@ -72,12 +99,6 @@ void Royal_ProjectApp::update(){
 	rec->draw();
 	//smallRec = new Rectangle1(pixels,kTextureSize,100,350,650,100,0,150,150);
 	//insertAfter(first_node, smallRec);
-	rec3 = new Rectangle1(pixels,kTextureSize,230,162,100,100,50,50,50);
-	insertAfter(first_node,rec3);
-	rec2 = new Rectangle1(pixels,kTextureSize,330,182,75,75,100,100,100);
-	insertAfter(first_node,rec2);
-	rec1 = new Rectangle1(pixels,kTextureSize,400,200,50,50,150,150,150);
-	insertAfter(first_node,rec1);
 	currentNode=first_node->next_;
 	while(currentNode != first_node){
 		currentNode->data_->draw();

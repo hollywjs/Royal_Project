@@ -14,3 +14,14 @@ void insertAfter(ListNode* location, Rectangle1* newRect){
 	temp->next_ = location->next_;
 	location->next_ = temp;
 }
+
+void reverse(ListNode* location){
+	ListNode* temp = location->next_;
+	if(location != location->next_){
+		location->next_ = temp->next_;
+		reverse(location);
+		temp->next_->next_=temp;
+		temp->next_=location;
+	}
+}
+

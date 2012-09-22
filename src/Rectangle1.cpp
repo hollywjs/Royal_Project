@@ -32,3 +32,10 @@ void Rectangle1::draw()
 }
 
 
+void Rectangle1::setX(int newX){
+	x=newX;
+}
+
+void Rectangle1::setY(int newY){
+	y= newY;
+}
