@@ -31,6 +31,13 @@ void Rectangle1::draw()
 	}
 }
 
+bool Rectangle1::isInside(int tempX, int tempY){
+	if(tempX >= x && tempX <= x+width && tempY >= y && tempY <= y+height){
+		return true;
+	}
+	else
+		return false;
+}
 
 void Rectangle1::setX(int newX){
 	x=newX;

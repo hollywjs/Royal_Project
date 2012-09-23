@@ -12,6 +12,7 @@ public:
 	void Rectangle1::setRed(int newRed);
 	void Rectangle1::setBlue(int newBlue);
 	void Rectangle1::setGreen(int newGreen);
+	bool Rectangle1::isInside(int tempX, int tempY);
 	uint8_t* Rectangle1::getPixels();
 	int Rectangle1::getKTextureSize();
 	int Rectangle1::getX();

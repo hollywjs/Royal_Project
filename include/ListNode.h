@@ -8,6 +8,7 @@ class ListNode{
 public:
 	ListNode();
 
+	ListNode* firstNode;
 	ListNode* next_;
 	ListNode* previous_;
 	Rectangle1* data_;
@@ -15,3 +16,4 @@ public:
 
 void insertAfter(ListNode* location, Rectangle1* newRec);
 void reverse(ListNode* location);
+void reorder(ListNode* location, Rectangle1* rec);

@@ -25,3 +25,9 @@ void reverse(ListNode* location){
 		temp->next_=location;
 	}
 }
+
+void reorder(ListNode* location, Rectangle1* rec){
+	ListNode* temp = location->next_;
+	location->next_ = temp->next_;
+	insertAfter(location->firstNode, rec);
+}
