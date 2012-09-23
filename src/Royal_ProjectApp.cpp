@@ -93,7 +93,7 @@ void Royal_ProjectApp::setup()
 	first_node->next_ = first_node;
 	first_node->previous_ = first_node;
 	rec = new Rectangle1(pixels,kTextureSize,0,0,kAppWidth,kAppHeight,255,255,255);
-	rec4 = new Rectangle1(pixels,kTextureSize,recX-225,recY-75,150,150,50,0,0);
+	rec4 = new Rectangle1(pixels,kTextureSize,recX-225,recY-75,150,150,0,0,0);
 	insertAfter(first_node,rec4);
 	rec3 = new Rectangle1(pixels,kTextureSize,recX-150,recY-50,125,125,50,50,50);
 	insertAfter(first_node,rec3);
@@ -115,7 +115,7 @@ void Royal_ProjectApp::setup()
 *  account.
 */
 void Royal_ProjectApp::render(){	
-	string txt = "Welcome to the help box!\n\n Key Controls: \n ?      Turns on and off help message \n r      Reverses the shapes order \n\n Mouse Control: \n Click on a shape and move the mouse to move one shape or a group of shapes from one place to another";	
+	string txt = "Welcome to the help box!\n\n Key Controls: \n ?      Turns on and off help message \n r      Reverses the shapes order \n\n Mouse Control: \n Click anywhere on the screen and the shapes will be redrawn there";	
 	TextBox tbox = TextBox().alignment( TextBox::CENTER ).
 		font(wordFont).size( Vec2i( 512, 511) ).text( txt );	
 	tbox.setColor( ColorA( 1.0, 1.0, 1.0, 1.0 ) );	
