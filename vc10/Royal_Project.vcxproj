@@ -104,13 +104,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Circle.cpp" />
     <ClCompile Include="..\src\ListNode.cpp" />
     <ClCompile Include="..\src\Rectangle1.cpp" />
     <ClCompile Include="..\src\Royal_ProjectApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Circle.h" />
     <ClInclude Include="..\include\ListNode.h" />
     <ClInclude Include="..\include\Rectangle1.h" />
     <ClInclude Include="..\include\Resources.h" />

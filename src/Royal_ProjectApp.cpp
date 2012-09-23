@@ -8,7 +8,12 @@
 *
 *@note This project satisifies goals A(creating a linked list and
 *  drawing objects to the screen), B(this displays a message at
-*  startup that can be turned on and off using the '?' key),
+*  startup that can be turned on and off using the '?' key), D(the 
+*  objects in the link list can be moved by the user clicking the 
+*  mouse), E(it is possible to reverse the list by pressing the 'r'
+*  key), G(in the message box transparency is used to create the 
+*  color and text), H(my objects get smaller as they were further
+*  away this was to show depth)
 */
 #pragma once
 #include "cinder/app/AppBasic.h"
@@ -33,6 +38,7 @@ class Royal_ProjectApp : public AppBasic {
 	void prepareSettings(Settings* settings);
 	void displayHelp();
 	void Royal_ProjectApp::render();
+	void Royal_ProjectApp::keyDown(KeyEvent event);
 
 private:
 	 Surface* mySurface_;
@@ -69,6 +75,9 @@ void Royal_ProjectApp::prepareSettings(Settings* settings){
 *  Sets up my surface, font, the help box, calls the help box fuction,
 *  sets isDisplayed to true, sets up intial variables and 
 *  initializes the link list
+*
+*  I created my rectangles smaller as they were further away, this
+*  meets goal H
 */
 void Royal_ProjectApp::setup()
 {
@@ -83,7 +92,8 @@ void Royal_ProjectApp::setup()
 	first_node->firstNode = first_node;
 	first_node->next_ = first_node;
 	first_node->previous_ = first_node;
-	rec4 = new Rectangle1(pixels,kTextureSize,recX-225,recY-75,150,150,0,0,0);
+	rec = new Rectangle1(pixels,kTextureSize,0,0,kAppWidth,kAppHeight,255,255,255);
+	rec4 = new Rectangle1(pixels,kTextureSize,recX-225,recY-75,150,150,50,0,0);
 	insertAfter(first_node,rec4);
 	rec3 = new Rectangle1(pixels,kTextureSize,recX-150,recY-50,125,125,50,50,50);
 	insertAfter(first_node,rec3);
@@ -97,64 +107,65 @@ void Royal_ProjectApp::setup()
 /**
 *  Creates the help box, can be turned on and off by pressing the '?'
 *  key, this satifies goal B.
+*
+*  This message box also uses transparency to create the 
+*  background color and the text color.  This satifies goal G.
+*
+*  This code was copied and modified from ajduberstein's github
+*  account.
 */
 void Royal_ProjectApp::render(){	
 	string txt = "Welcome to the help box!\n\n Key Controls: \n ?      Turns on and off help message \n r      Reverses the shapes order \n\n Mouse Control: \n Click on a shape and move the mouse to move one shape or a group of shapes from one place to another";	
 	TextBox tbox = TextBox().alignment( TextBox::CENTER ).
 		font(wordFont).size( Vec2i( 512, 511) ).text( txt );	
-	tbox.setColor( Color( 1.0f, 1.0f, 1.0f ) );	
-	tbox.setBackgroundColor( ColorA( 0.5, 0, 0.25, 1 ) );	
+	tbox.setColor( ColorA( 1.0, 1.0, 1.0, 1.0 ) );	
+	tbox.setBackgroundColor( ColorA( 1.0, 0.0, 0.5, 1.0 ) );	
 	textureFont = gl::Texture( tbox.render() );
 }
 
+/**
+*  This moves the link list to a new location clicked by the user
+*
+*  This meets goal D
+*/
 void Royal_ProjectApp::mouseDown( MouseEvent event )
 {
 	recX = event.getX();
 	recY = event.getY();
 	eventTimes=0;
-	//reverse(first_node);
-
-	//currentNode=first_node->next_;
-	reorder(currentNode,currentNode->data_);
-	//while(currentNode != first_node){
-	//	currentNode->data_->setX(recX-(eventTimes*75));
-	//	currentNode->data_->setY(recY-(eventTimes*25));
-	//	eventTimes++;
-	//	currentNode=currentNode->next_;
-	//}
-	//while(currentNode != first_node){
-		//if(currentNode->data_->isInside(recX, recY)){
-			//reorder(currentNode,currentNode->data_);
-			//currentNode->data_->setX(recX-(eventTimes*75));
-			//currentNode->data_->setY(recY-(eventTimes*25));
-			//eventTimes++;
-			//currentNode=currentNode->next_;
-		//}
-	//}
-
-	//circleX=event.getX();
-	//circleY=event.getY();
+	currentNode=first_node->next_;
+	while(currentNode != first_node){
+		currentNode->data_->setX(recX-(eventTimes*75));
+		currentNode->data_->setY(recY-(eventTimes*25));
+		eventTimes++;
+		currentNode=currentNode->next_;
+	}
 }
 
-/**void Royal_ProjectApp::keyDown(KeyEvent event){	
+/**
+*  This turns the help message on and off as the user presses the '?'
+*  key,  it also reverses the list if the user presses the 'r' key.
+*  
+*  This meets goals B and E
+*/
+void Royal_ProjectApp::keyDown(KeyEvent event){	
 	if( event.getChar() == '?' ) {
 		if(isDisplayed == true){
-			isDisplayed == false;
+			isDisplayed = false;
 		}
 		else
-			isDisplayed == true;
+			isDisplayed = true;
 	}
 	else if(event.getChar() == 'r'){
 		reverse(first_node);
 	}
 }
-*/
 
 /**
-*  Updates to the surface as changes are made
+*  Makes updates to the surface as changes are made
 */
 void Royal_ProjectApp::update(){
-	rec = new Rectangle1(pixels,kTextureSize,0,0,kAppWidth,kAppHeight,255,255,255);
+
 	rec->draw();
 	currentNode=first_node->next_;
 	while(currentNode != first_node){
@@ -169,8 +180,9 @@ void Royal_ProjectApp::update(){
 void Royal_ProjectApp::draw()
 {
 	gl::draw(*mySurface_);
-	if (textureFont && isDisplayed)		
+	if (textureFont && isDisplayed){		
 		gl::draw(textureFont);
+	}
 }
 
 CINDER_APP_BASIC( Royal_ProjectApp, RendererGl )
